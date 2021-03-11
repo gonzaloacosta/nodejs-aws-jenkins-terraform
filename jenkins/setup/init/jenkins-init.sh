@@ -33,7 +33,8 @@ apt-get update
 apt-get install -y python3 openjdk-8-jre
 update-java-alternatives --set java-1.8.0-openjdk-amd64
 # install jenkins
-apt-get install -y jenkins=${JENKINS_VERSION} unzip
+#apt-get install -y jenkins=${JENKINS_VERSION} unzip
+apt-get install -y jenkins unzip
 
 # install pip
 wget -q https://bootstrap.pypa.io/get-pip.py

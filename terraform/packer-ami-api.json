@@ -5,7 +5,7 @@
     "source_ami": "ami-0ca5c3bd5a268e7db",
     "instance_type": "t2.micro",
     "ssh_username": "ubuntu",
-    "ami_name": "api-instance {{timestamp}}"
+    "ami_name": "api-instance-{{timestamp}}"
   }],
   "provisioners": [
     {
