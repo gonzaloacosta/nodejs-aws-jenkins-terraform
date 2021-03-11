@@ -1,0 +1,5 @@
+terraform/amivar*.tf
+jenkins/setup/.terraform
+jenkins/setup/.terraform/*
+terraform/.terraform
+terraform/.terraform/*

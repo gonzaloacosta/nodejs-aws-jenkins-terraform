@@ -1,0 +1,37 @@
+{
+ "builders": [{
+    "type": "amazon-ebs",
+    "region": "us-west-2",
+    "source_ami": "ami-0ca5c3bd5a268e7db",
+    "instance_type": "t2.micro",
+    "ssh_username": "ubuntu",
+    "ami_name": "api-instance {{timestamp}}"
+  }],
+  "provisioners": [
+    {
+      "type": "shell",
+      "inline": ["mkdir api", "sudo apt-get update -y", "sudo apt-get -y install npm nodejs"],
+      "pause_before": "10s"
+    },
+    {
+      "type": "file",
+      "source" : "../api/",
+      "destination" : "api"
+    },
+    {
+      "type": "file",
+      "source" : "/home/gonza/.ssh/id_rsa.pub",
+      "destination" : "/home/ubuntu/.ssh/gonza.pub"
+    },
+    {
+      "type": "shell",
+      "inline": ["cat /home/ubuntu/.ssh/gonza.pub /home/ubuntu/.ssh/authorized_keys"],
+      "pause_before": "10s"
+    },
+    {
+    "type": "shell",
+    "inline": ["cd /home/ubuntu/api", "ls -ltr", "npm install"],
+    "pause_before": "10s"
+    }
+  ]
+}

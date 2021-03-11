@@ -1,0 +1,27 @@
+{
+  "builders": [{
+    "type": "amazon-ebs",
+    "region": "us-west-2",
+    "source_ami": "ami-0ca5c3bd5a268e7db",
+    "instance_type": "t2.micro",
+    "ssh_username": "ubuntu",
+    "ami_name": "web-instance {{timestamp}}"
+  }],
+  "provisioners": [
+    {
+      "type": "shell",
+      "inline": ["mkdir web", "sudo apt-get update -y", "sudo apt-get -y install npm nodejs"],
+      "pause_before": "10s"
+    },
+    {
+      "type": "file",
+      "source" : "../web/",
+      "destination" : "web"
+    },
+    {
+    "type": "shell",
+    "inline": ["cd web", "ls -ltr", "npm install"],
+    "pause_before": "10s"
+    }
+  ]
+}
